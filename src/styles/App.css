@@ -1,0 +1,12 @@
+.wrapper {
+  width: 1280px;
+}
+
+.cta-button {
+  width: 320px;
+  background: rgba(198, 40, 40, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  left: 80px;
+  bottom: 38px;
+}

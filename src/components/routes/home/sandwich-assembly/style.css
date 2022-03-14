@@ -1,0 +1,22 @@
+.assembly-wrapper {
+  width: 680px;
+}
+
+.assembly-wrapper > .assembly-button {
+  margin-top: 16px;
+}
+
+.assembly-group-title {
+  padding-bottom: 16px;
+}
+
+.assembly-title {
+  text-align: center;
+  font-size: 24px;
+  color: #8E0000;
+}
+
+.assembly-button {
+  background-color: #C62828;
+  width: 680px;
+}

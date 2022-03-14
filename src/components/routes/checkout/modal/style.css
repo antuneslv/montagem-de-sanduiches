@@ -1,0 +1,22 @@
+.modal {
+  width: 876px;
+  height: 527px;
+  border-radius: 8px;
+}
+
+.modal-title {
+  font-family: 'Lobster', cursive;
+  font-size: 32px;
+  color: #8E0000;
+  text-align: center;
+}
+
+.modal-text {
+  font-size: 24px;
+  text-align: center;
+}
+
+.modal-button {
+  width: 240px;
+  background-color: #C62828;
+}
