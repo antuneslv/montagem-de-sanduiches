@@ -30,4 +30,8 @@
   color:rgba(255, 255, 255, 0.5);
   text-decoration: none;
   display: block;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

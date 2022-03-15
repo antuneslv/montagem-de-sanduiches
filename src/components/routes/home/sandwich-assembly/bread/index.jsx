@@ -10,28 +10,28 @@ class Bread extends Component {
         </div>
         <Button
           id="bread1"
-          className="assembly-button"
+          className={this.props.bread1}
           onClick={this.props.selectedBread}
         >
           Brioche
         </Button>
         <Button
           id="bread2"
-          className="assembly-button"
+          className={this.props.bread2}
           onClick={this.props.selectedBread}
         >
           Australiano
         </Button>
         <Button
           id="bread3"
-          className="assembly-button"
+          className={this.props.bread3}
           onClick={this.props.selectedBread}
         >
           Gergelim
         </Button>
         <Button
           id="bread4"
-          className="assembly-button"
+          className={this.props.bread4}
           onClick={this.props.selectedBread}
         >
           Sal

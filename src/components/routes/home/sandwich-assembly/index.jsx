@@ -11,11 +11,27 @@ class SandwichAssembly extends Component {
     let step
     switch (this.props.sandwichStep) {
       case 'stepBread':
-        step = <Bread selectedBread={this.props.selectedBread} />
+        step = (
+          <Bread
+            selectedBread={this.props.selectedBread}
+            bread1={this.props.bread1}
+            bread2={this.props.bread2}
+            bread3={this.props.bread3}
+            bread4={this.props.bread4}
+          />
+        )
         break
 
       case 'stepMeat':
-        step = <Meat />
+        step = (
+          <Meat
+            selectedMeat={this.props.selectedMeat}
+            meat1={this.props.meat1}
+            meat2={this.props.meat2}
+            meat3={this.props.meat3}
+            meat4={this.props.meat4}
+          />
+        )
         break
 
       case 'stepCheese':

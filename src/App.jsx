@@ -31,40 +31,99 @@ class App extends Component {
       { type: 'Saladas', item: 'Cebola', price: 2, id: 'salad3' },
       { type: 'Saladas', item: 'Picles', price: 4, id: 'salad4' },
       { type: 'Complementos', item: 'Bacon', price: 4, id: 'complement1' },
-      { type: 'Complementos', item: 'Cebola Caramelizada', price: 2, id: 'complement2' },
-      { type: 'Complementos', item: 'Molho Especial', price: 3, id: 'complement3' },
+      { type: 'Complementos', item: 'Cebola Caramelizada', price: 2, id: 'complement2' }, 
+      { type: 'Complementos', item: 'Molho Especial', price: 3, id: 'complement3' }, 
       { type: 'Complementos', item: 'Pimenta Jalapeño', price: 3, id: 'complement4' }
     ]
 
+    this.breadButtons = [
+      { id: 'bread1', class: 'assembly-button' },
+      { id: 'bread2', class: 'assembly-button' },
+      { id: 'bread3', class: 'assembly-button' },
+      { id: 'bread4', class: 'assembly-button' }
+    ]
+
+    this.meatButtons = [
+      { id: 'meat1', class: 'assembly-button' },
+      { id: 'meat2', class: 'assembly-button' },
+      { id: 'meat3', class: 'assembly-button' },
+      { id: 'meat4', class: 'assembly-button' }
+    ]
+
     this.selectedBread = this.selectedBread.bind(this)
+    this.selectedMeat = this.selectedMeat.bind(this)
     this.next = this.next.bind(this)
-    
   }
 
   selectedBread($event) {
-    this.sandwichItems.forEach((element, index) => {
-      if ($event.target.id == element.id) {
-        this.setState({ previewList: [this.sandwichItems[index]]})
-        console.log(this.state.previewList)
+    this.breadButtons.forEach(button => {
+      if (button.id != $event.target.id) {
+        button.class = 'assembly-button'
+      }
+      if (button.id == $event.target.id) {
+        button.class == 'assembly-button'
+          ? (button.class = 'assembly-button highlighted-button button')
+          : (button.class = 'assembly-button')
       }
     })
+
+    this.sandwichItems.forEach((element, index) => {
+      if ($event.target.id == element.id) {
+        this.setState({
+          previewList: [this.sandwichItems[index]],
+          totalPrice: element.price
+        })
+      }
+    })
+
+    return this.breadButtons
+  }
+
+  selectedMeat($event) {
+    this.meatButtons.forEach(button => {
+      if (button.id != $event.target.id) {
+        button.class = 'assembly-button'
+      }
+      if (button.id == $event.target.id) {
+        button.class == 'assembly-button'
+          ? (button.class = 'assembly-button highlighted-button button')
+          : (button.class = 'assembly-button')
+      }
+    })
+
+    this.sandwichItems.forEach((element, index) => {
+      if ($event.target.id == element.id) {
+        if (this.state.previewList.length == 1) {
+          this.setState({
+            previewList: [...this.state.previewList, this.sandwichItems[index]],
+          })
+        } else {
+          this.setState({
+            previewList: [
+              this.state.previewList.splice(1, 1, this.sandwichItems[index])
+            ]
+          })
+        }
+       console.log(this.state.previewList)
+      }
+    })
+
+    return this.breadButtons
   }
 
   next() {
-    if (this.state.sandwichStep == 'stepBread') {
-      this.setState({sandwichStep: 'stepMeat'})
+    if (this.state.sandwichStep == 'stepBread' && this.state.previewList.length == 1) {
+      this.setState({ sandwichStep: 'stepMeat' })
     } else if (this.state.sandwichStep == 'stepMeat') {
-      this.setState({sandwichStep: 'stepCheese'})
+      this.setState({ sandwichStep: 'stepCheese' })
     } else if (this.state.sandwichStep == 'stepCheese') {
-      this.setState({sandwichStep: 'stepSalad'})
+      this.setState({ sandwichStep: 'stepSalad' })
     } else if (this.state.sandwichStep == 'stepSalad') {
-      this.setState({sandwichStep: 'stepComplement'})
+      this.setState({ sandwichStep: 'stepComplement' })
     }
   }
 
   render() {
-    let { totalPrice } = this.state
-
     return (
       <div className="wrapper">
         <BrowserRouter>
@@ -74,10 +133,19 @@ class App extends Component {
               element={
                 <Home
                   sandwichStep={this.state.sandwichStep}
-                  selectedBread={this.selectedBread}
                   next={this.next}
-                  total={totalPrice}
+                  total={this.state.totalPrice}
                   sandwichItems={this.state.previewList}
+                  selectedBread={this.selectedBread}
+                  bread1={this.breadButtons[0].class}
+                  bread2={this.breadButtons[1].class}
+                  bread3={this.breadButtons[2].class}
+                  bread4={this.breadButtons[3].class}
+                  selectedMeat={this.selectedMeat}
+                  meat1={this.meatButtons[0].class}
+                  meat2={this.meatButtons[1].class}
+                  meat3={this.meatButtons[2].class}
+                  meat4={this.meatButtons[3].class}
                 />
               }
             />

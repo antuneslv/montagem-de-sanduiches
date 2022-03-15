@@ -5,7 +5,10 @@ import './style.css'
 
 class Preview extends Component {
   render() {
+    const {total} = this.props
+    let formatedCurrency = total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
     let step
+
     if (this.props.sandwichStep == 'stepComplement') {
       step = (
         <Button className="cta-button">
@@ -32,7 +35,7 @@ class Preview extends Component {
             </li>
           ))}
         </ul>
-        <p className="price">Total: R${this.props.total}</p>
+        {total > 0 && <p className="price">Total: {formatedCurrency}</p>}
         {step}
       </div>
     )
