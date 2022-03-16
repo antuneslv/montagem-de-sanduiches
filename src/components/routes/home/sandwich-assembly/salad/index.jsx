@@ -9,10 +9,34 @@ class Salad extends Component {
           <h2 className="assembly-title">Escolha suas saladas</h2>
           <h2 className="assembly-title">Mais de uma opção selecionável</h2>
         </div>
-        <Button className="assembly-button">Alface</Button>
-        <Button className="assembly-button">Tomate</Button>
-        <Button className="assembly-button">Cebola</Button>
-        <Button className="assembly-button">Picles</Button>
+        <Button
+          id="salad1"
+          className="assembly-button"
+          onClick={this.props.selectedSalad}
+        >
+          Alface
+        </Button>
+        <Button
+          id="salad2"
+          className="assembly-button"
+          onClick={this.props.selectedSalad}
+        >
+          Tomate
+        </Button>
+        <Button
+          id="salad3"
+          className="assembly-button"
+          onClick={this.props.selectedSalad}
+        >
+          Cebola
+        </Button>
+        <Button
+          id="salad4"
+          className="assembly-button"
+          onClick={this.props.selectedSalad}
+        >
+          Picles
+        </Button>
       </>
     )
   }

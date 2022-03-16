@@ -26,6 +26,12 @@ class Home extends Component {
               meat2={this.props.meat2}
               meat3={this.props.meat3}
               meat4={this.props.meat4}
+              selectedCheese={this.props.selectedCheese}
+              cheese1={this.props.cheese1}
+              cheese2={this.props.cheese2}
+              cheese3={this.props.cheese3}
+              cheese4={this.props.cheese4}
+              selectedSalad={this.props.selectedSalad}
             />
           </div>
           <Preview

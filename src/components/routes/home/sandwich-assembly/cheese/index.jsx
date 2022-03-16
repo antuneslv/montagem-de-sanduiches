@@ -8,10 +8,34 @@ class Cheese extends Component {
         <div className="assembly-group-title">
           <h2 className="assembly-title">Escolha seu queijo</h2>
         </div>
-        <Button className="assembly-button">Molho Gorgonzola</Button>
-        <Button className="assembly-button">Prato</Button>
-        <Button className="assembly-button">Chedar</Button>
-        <Button className="assembly-button">Sem queijo</Button>
+        <Button
+          id="cheese1"
+          className={this.props.cheese1}
+          onClick={this.props.selectedCheese}
+        >
+          Molho Gorgonzola
+        </Button>
+        <Button
+          id="cheese2"
+          className={this.props.cheese2}
+          onClick={this.props.selectedCheese}
+        >
+          Prato
+        </Button>
+        <Button
+          id="cheese3"
+          className={this.props.cheese3}
+          onClick={this.props.selectedCheese}
+        >
+          Chedar
+        </Button>
+        <Button
+          id="cheese4"
+          className={this.props.cheese4}
+          onClick={this.props.selectedCheese}
+        >
+          Sem queijo
+        </Button>
       </>
     )
   }

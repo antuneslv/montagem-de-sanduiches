@@ -9,6 +9,10 @@ class App extends Component {
     super()
     this.state = {
       sandwichStep: 'stepBread',
+      selectedBread: [],
+      selectedMeat: [],
+      selectedCheese: [],
+      selectedSalad:[],
       previewList: [],
       totalPrice: 0
     }
@@ -31,9 +35,24 @@ class App extends Component {
       { type: 'Saladas', item: 'Cebola', price: 2, id: 'salad3' },
       { type: 'Saladas', item: 'Picles', price: 4, id: 'salad4' },
       { type: 'Complementos', item: 'Bacon', price: 4, id: 'complement1' },
-      { type: 'Complementos', item: 'Cebola Caramelizada', price: 2, id: 'complement2' }, 
-      { type: 'Complementos', item: 'Molho Especial', price: 3, id: 'complement3' }, 
-      { type: 'Complementos', item: 'Pimenta Jalapeño', price: 3, id: 'complement4' }
+      {
+        type: 'Complementos',
+        item: 'Cebola Caramelizada',
+        price: 2,
+        id: 'complement2'
+      },
+      {
+        type: 'Complementos',
+        item: 'Molho Especial',
+        price: 3,
+        id: 'complement3'
+      },
+      {
+        type: 'Complementos',
+        item: 'Pimenta Jalapeño',
+        price: 3,
+        id: 'complement4'
+      }
     ]
 
     this.breadButtons = [
@@ -50,8 +69,17 @@ class App extends Component {
       { id: 'meat4', class: 'assembly-button' }
     ]
 
+    this.cheeseButtons = [
+      { id: 'cheese1', class: 'assembly-button' },
+      { id: 'cheese2', class: 'assembly-button' },
+      { id: 'cheese3', class: 'assembly-button' },
+      { id: 'cheese4', class: 'assembly-button' }
+    ]
+
     this.selectedBread = this.selectedBread.bind(this)
     this.selectedMeat = this.selectedMeat.bind(this)
+    this.selectedCheese = this.selectedCheese.bind(this)
+    this.selectedSalad = this.selectedSalad.bind(this)
     this.next = this.next.bind(this)
   }
 
@@ -70,6 +98,7 @@ class App extends Component {
     this.sandwichItems.forEach((element, index) => {
       if ($event.target.id == element.id) {
         this.setState({
+          selectedBread: [this.sandwichItems[index]],
           previewList: [this.sandwichItems[index]],
           totalPrice: element.price
         })
@@ -93,26 +122,84 @@ class App extends Component {
 
     this.sandwichItems.forEach((element, index) => {
       if ($event.target.id == element.id) {
-        if (this.state.previewList.length == 1) {
-          this.setState({
-            previewList: [...this.state.previewList, this.sandwichItems[index]],
-          })
-        } else {
-          this.setState({
-            previewList: [
-              this.state.previewList.splice(1, 1, this.sandwichItems[index])
-            ]
-          })
-        }
-       console.log(this.state.previewList)
+        this.setState({
+          selectedMeat: [this.sandwichItems[index]],
+          previewList: this.state.selectedBread.concat(
+            this.sandwichItems[index]
+          ),
+          totalPrice: this.state.selectedBread[0].price + element.price
+        })
       }
     })
 
-    return this.breadButtons
+    return this.meatButtons
+  }
+
+  selectedCheese($event) {
+    this.cheeseButtons.forEach(button => {
+      if (button.id != $event.target.id) {
+        button.class = 'assembly-button'
+      }
+      if (button.id == $event.target.id) {
+        button.class == 'assembly-button'
+          ? (button.class = 'assembly-button highlighted-button button')
+          : (button.class = 'assembly-button')
+      }
+    })
+
+    this.sandwichItems.forEach((element, index) => {
+      if ($event.target.id == element.id) {
+        this.setState({
+          selectedCheese: [this.sandwichItems[index]],
+          previewList: this.state.selectedBread.concat(
+            this.state.selectedMeat,
+            this.sandwichItems[index]
+          ),
+          totalPrice:
+            this.state.selectedBread[0].price +
+            this.state.selectedMeat[0].price +
+            element.price
+        })
+      }
+    })
+
+    return this.cheesetButtons
+  }
+  
+  selectedSalad($event) {
+    $event.target.className == 'assembly-button button'
+      ? ($event.target.className = 'assembly-button highlighted-button button')
+      : ($event.target.className = 'assembly-button button')
+
+    this.sandwichItems.forEach((element, index) => {
+      if ($event.target.id == element.id) {
+        if (!this.state.selectedSalad.includes(this.sandwichItems[index])){
+          this.setState({
+            selectedSalad: [...this.state.selectedSalad, this.sandwichItems[index]]
+            })
+        } else {
+          this.setState({
+            selectedSalad: this.state.selectedSalad.filter(
+              element => element != this.sandwichItems[index]
+            )
+          })
+        }
+        this.setState({
+          previewList: this.state.selectedBread.concat(
+            this.state.selectedMeat,
+            this.state.selectedCheese,
+            this.state.selectedSalad
+          )
+        })
+      }
+    })
   }
 
   next() {
-    if (this.state.sandwichStep == 'stepBread' && this.state.previewList.length == 1) {
+    if (
+      this.state.sandwichStep == 'stepBread' &&
+      this.state.previewList.length == 1
+    ) {
       this.setState({ sandwichStep: 'stepMeat' })
     } else if (this.state.sandwichStep == 'stepMeat') {
       this.setState({ sandwichStep: 'stepCheese' })
@@ -146,6 +233,12 @@ class App extends Component {
                   meat2={this.meatButtons[1].class}
                   meat3={this.meatButtons[2].class}
                   meat4={this.meatButtons[3].class}
+                  selectedCheese={this.selectedCheese}
+                  cheese1={this.cheeseButtons[0].class}
+                  cheese2={this.cheeseButtons[1].class}
+                  cheese3={this.cheeseButtons[2].class}
+                  cheese4={this.cheeseButtons[3].class}
+                  selectedSalad={this.selectedSalad}
                 />
               }
             />
