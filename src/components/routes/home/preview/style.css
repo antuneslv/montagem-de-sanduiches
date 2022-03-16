@@ -26,6 +26,17 @@
   margin-top: 16px;
 }
 
+.preview-single-items {
+  margin-bottom: 6px;
+}
+
+.preview-items {
+  position: relative;
+  left: 40px;
+  margin: 6px 0;
+  list-style-type: circle;
+}
+
 .link {
   color:rgba(255, 255, 255, 0.5);
   text-decoration: none;

@@ -24,14 +24,23 @@ class Preview extends Component {
         </Button>
       )
     }
-    const { sandwichItems } = this.props
+
+    const { singleItems, saladItems } = this.props
+    const salad = <p>Saladas: </p>
+
     return (
       <div className="preview-wrapper">
         <h2 className="preview-title">Ingredientes Selecionados:</h2>
         <ul className="preview-list">
-          {sandwichItems.map(item => (
-            <li key={item.id}>
+          {singleItems.map(item => (
+            <li className="preview-single-items" key={item.id}>
               {item.type}: {item.item}
+            </li>
+          ))}
+          {saladItems.length > 0 && <p>Saladas: </p>}
+          {saladItems.map(item => (
+            <li className="preview-items" key={item.id}>
+              {item.item}
             </li>
           ))}
         </ul>

@@ -12,8 +12,11 @@ class App extends Component {
       selectedBread: [],
       selectedMeat: [],
       selectedCheese: [],
-      selectedSalad:[],
-      previewList: [],
+      selectedSalads:[],
+      singleItemsList: [],
+      finalList: [],
+      saladPriceList: [],
+      totalSaladPrice: 0,
       totalPrice: 0
     }
 
@@ -89,9 +92,8 @@ class App extends Component {
         button.class = 'assembly-button'
       }
       if (button.id == $event.target.id) {
-        button.class == 'assembly-button'
-          ? (button.class = 'assembly-button highlighted-button button')
-          : (button.class = 'assembly-button')
+        button.class == 'assembly-button' &&
+          (button.class = 'assembly-button highlighted-button button')
       }
     })
 
@@ -99,7 +101,7 @@ class App extends Component {
       if ($event.target.id == element.id) {
         this.setState({
           selectedBread: [this.sandwichItems[index]],
-          previewList: [this.sandwichItems[index]],
+          singleItemsList: [this.sandwichItems[index]],
           totalPrice: element.price
         })
       }
@@ -114,9 +116,8 @@ class App extends Component {
         button.class = 'assembly-button'
       }
       if (button.id == $event.target.id) {
-        button.class == 'assembly-button'
-          ? (button.class = 'assembly-button highlighted-button button')
-          : (button.class = 'assembly-button')
+        button.class == 'assembly-button' &&
+          (button.class = 'assembly-button highlighted-button button')
       }
     })
 
@@ -124,7 +125,7 @@ class App extends Component {
       if ($event.target.id == element.id) {
         this.setState({
           selectedMeat: [this.sandwichItems[index]],
-          previewList: this.state.selectedBread.concat(
+          singleItemsList: this.state.selectedBread.concat(
             this.sandwichItems[index]
           ),
           totalPrice: this.state.selectedBread[0].price + element.price
@@ -141,9 +142,8 @@ class App extends Component {
         button.class = 'assembly-button'
       }
       if (button.id == $event.target.id) {
-        button.class == 'assembly-button'
-          ? (button.class = 'assembly-button highlighted-button button')
-          : (button.class = 'assembly-button')
+        button.class == 'assembly-button' &&
+          (button.class = 'assembly-button highlighted-button button')
       }
     })
 
@@ -151,7 +151,7 @@ class App extends Component {
       if ($event.target.id == element.id) {
         this.setState({
           selectedCheese: [this.sandwichItems[index]],
-          previewList: this.state.selectedBread.concat(
+          singleItemsList: this.state.selectedBread.concat(
             this.state.selectedMeat,
             this.sandwichItems[index]
           ),
@@ -173,24 +173,44 @@ class App extends Component {
 
     this.sandwichItems.forEach((element, index) => {
       if ($event.target.id == element.id) {
-        if (!this.state.selectedSalad.includes(this.sandwichItems[index])){
+        if (!this.state.selectedSalads.includes(this.sandwichItems[index])){
           this.setState({
-            selectedSalad: [...this.state.selectedSalad, this.sandwichItems[index]]
-            })
+            selectedSalads: [
+              ...this.state.selectedSalads,
+              this.sandwichItems[index]
+            ],
+            saladPriceList: [
+              ...this.state.saladPriceList,
+              {
+                price: this.sandwichItems[index].price,
+                id: this.sandwichItems[index].id
+              }
+            ]
+          })
         } else {
           this.setState({
-            selectedSalad: this.state.selectedSalad.filter(
+            selectedSalads: this.state.selectedSalads.filter(
               element => element != this.sandwichItems[index]
+            ),
+            saladPriceList: this.state.saladPriceList.filter(
+              element => element.id != this.sandwichItems[index].id
             )
           })
         }
         this.setState({
-          previewList: this.state.selectedBread.concat(
-            this.state.selectedMeat,
-            this.state.selectedCheese,
-            this.state.selectedSalad
+          totalSaladPrice: this.state.saladPriceList.reduce(
+            (prevValue, currValue) => prevValue.price + currValue, 0
           )
         })
+
+        this.setState({
+          totalPrice:
+            this.state.selectedBread[0].price +
+            this.state.selectedMeat[0].price +
+            this.state.selectedCheese[0].price +
+            this.state.totalSaladPrice
+        })
+        console.log(this.state.totalSaladPrice)
       }
     })
   }
@@ -198,14 +218,23 @@ class App extends Component {
   next() {
     if (
       this.state.sandwichStep == 'stepBread' &&
-      this.state.previewList.length == 1
+      this.state.singleItemsList.length == 1
     ) {
       this.setState({ sandwichStep: 'stepMeat' })
-    } else if (this.state.sandwichStep == 'stepMeat') {
+    } else if (
+      this.state.sandwichStep == 'stepMeat' &&
+      this.state.singleItemsList.length == 2
+    ) {
       this.setState({ sandwichStep: 'stepCheese' })
-    } else if (this.state.sandwichStep == 'stepCheese') {
+    } else if (
+      this.state.sandwichStep == 'stepCheese' &&
+      this.state.singleItemsList.length == 3
+    ) {
       this.setState({ sandwichStep: 'stepSalad' })
-    } else if (this.state.sandwichStep == 'stepSalad') {
+    } else if (
+      this.state.sandwichStep == 'stepSalad' &&
+      this.state.selectedSalads.length > 0
+    ) {
       this.setState({ sandwichStep: 'stepComplement' })
     }
   }
@@ -222,7 +251,8 @@ class App extends Component {
                   sandwichStep={this.state.sandwichStep}
                   next={this.next}
                   total={this.state.totalPrice}
-                  sandwichItems={this.state.previewList}
+                  singleItems={this.state.singleItemsList}
+                  saladItems={this.state.selectedSalads}
                   selectedBread={this.selectedBread}
                   bread1={this.breadButtons[0].class}
                   bread2={this.breadButtons[1].class}

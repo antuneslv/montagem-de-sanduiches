@@ -36,7 +36,8 @@ class Home extends Component {
           </div>
           <Preview
             total={this.props.total}
-            sandwichItems={this.props.sandwichItems}
+            singleItems={this.props.singleItems}
+            saladItems={this.props.saladItems}
             next={this.props.next}
             sandwichStep={this.props.sandwichStep}
           />
