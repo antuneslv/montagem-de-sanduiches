@@ -15,7 +15,6 @@ class App extends Component {
       selectedSalads: [],
       selectedComplements: [],
       singleItemsList: [],
-      finalList: [],
       totalPrice: 0,
       disabled: true
     }
@@ -309,7 +308,17 @@ class App extends Component {
                 />
               }
             />
-            <Route path="/pagamento" element={<Checkout />} />
+            <Route
+              path="/pagamento"
+              element={
+                <Checkout
+                  singleItems={this.state.singleItemsList}
+                  saladItems={this.state.selectedSalads}
+                  complementItems={this.state.selectedComplements}
+                  total={this.state.totalPrice}
+                />
+              }
+            />
           </Routes>
         </BrowserRouter>
       </div>

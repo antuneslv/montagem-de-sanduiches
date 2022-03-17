@@ -8,13 +8,20 @@ import './style.css'
 
 class Checkout extends Component {
   render() {
+    const { singleItems, saladItems, complementItems, total } = this.props
+
     return (
       <>
         <Header title="Pague Seu Sanduíche" />
         <Main>
           <div className="img-order-summary">
             <img className="img" src={img} alt="Imagem do Sanduíche" />
-            <OrderSummary />
+            <OrderSummary
+              singleItems={singleItems}
+              saladItems={saladItems}
+              complementItems={complementItems}
+              total={total}
+            />
           </div>
           <PaymentDetails />
         </Main>

@@ -1,8 +1,10 @@
 .img-order-summary {
+  width: 680px;
+  height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 680px;
+  justify-content: flex-start;
 }
 
 .img {

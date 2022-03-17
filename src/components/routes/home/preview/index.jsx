@@ -5,7 +5,7 @@ import './style.css'
 
 class Preview extends Component {
   render() {
-    const {total} = this.props
+    const { total, singleItems, saladItems, complementItems } = this.props
     let formatedCurrency = total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
     let step
 
@@ -24,9 +24,7 @@ class Preview extends Component {
         </Button>
       )
     }
-
-    const { singleItems, saladItems, complementItems } = this.props
-    
+        
     return (
       <div className="preview-wrapper">
         <h2 className="preview-title">Ingredientes Selecionados:</h2>
