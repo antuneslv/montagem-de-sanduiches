@@ -9,10 +9,34 @@ class Complement extends Component {
           <h2 className="assembly-title">Escolha seus complementos</h2>
           <h2 className="assembly-title">Mais de uma opção selecionável</h2>
         </div>
-        <Button className="assembly-button">Bacon</Button>
-        <Button className="assembly-button">Cebola Caramelizada</Button>
-        <Button className="assembly-button">Molho Especial</Button>
-        <Button className="assembly-button">Pimenta Jalapeño</Button>
+        <Button
+          id="complement1"
+          className="assembly-button"
+          onClick={this.props.selectedComplement}
+        >
+          Bacon
+        </Button>
+        <Button
+          id="complement2"
+          className="assembly-button"
+          onClick={this.props.selectedComplement}
+        >
+          Cebola Caramelizada
+        </Button>
+        <Button
+          id="complement3"
+          className="assembly-button"
+          onClick={this.props.selectedComplement}
+        >
+          Molho Especial
+        </Button>
+        <Button
+          id="complement4"
+          className="assembly-button"
+          onClick={this.props.selectedComplement}
+        >
+          Pimenta Jalapeño
+        </Button>
       </>
     )
   }

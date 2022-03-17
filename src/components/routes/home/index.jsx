@@ -32,14 +32,17 @@ class Home extends Component {
               cheese3={this.props.cheese3}
               cheese4={this.props.cheese4}
               selectedSalad={this.props.selectedSalad}
+              selectedComplement={this.props.selectedComplement}
             />
           </div>
           <Preview
             total={this.props.total}
             singleItems={this.props.singleItems}
             saladItems={this.props.saladItems}
+            complementItems={this.props.complementItems}
             next={this.props.next}
             sandwichStep={this.props.sandwichStep}
+            disabled={this.props.disabled}
           />
         </Main>
       </>

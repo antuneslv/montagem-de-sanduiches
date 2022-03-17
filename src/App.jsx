@@ -12,12 +12,12 @@ class App extends Component {
       selectedBread: [],
       selectedMeat: [],
       selectedCheese: [],
-      selectedSalads:[],
+      selectedSalads: [],
+      selectedComplements: [],
       singleItemsList: [],
       finalList: [],
-      saladPriceList: [],
-      totalSaladPrice: 0,
-      totalPrice: 0
+      totalPrice: 0,
+      disabled: true
     }
 
     this.sandwichItems = [
@@ -83,10 +83,13 @@ class App extends Component {
     this.selectedMeat = this.selectedMeat.bind(this)
     this.selectedCheese = this.selectedCheese.bind(this)
     this.selectedSalad = this.selectedSalad.bind(this)
+    this.selectedComplement = this.selectedComplement.bind(this)
     this.next = this.next.bind(this)
   }
 
   selectedBread($event) {
+    this.setState({ disabled: false })
+
     this.breadButtons.forEach(button => {
       if (button.id != $event.target.id) {
         button.class = 'assembly-button'
@@ -111,6 +114,8 @@ class App extends Component {
   }
 
   selectedMeat($event) {
+    this.setState({ disabled: false })
+
     this.meatButtons.forEach(button => {
       if (button.id != $event.target.id) {
         button.class = 'assembly-button'
@@ -137,6 +142,8 @@ class App extends Component {
   }
 
   selectedCheese($event) {
+    this.setState({ disabled: false })
+
     this.cheeseButtons.forEach(button => {
       if (button.id != $event.target.id) {
         button.class = 'assembly-button'
@@ -165,7 +172,7 @@ class App extends Component {
 
     return this.cheesetButtons
   }
-  
+
   selectedSalad($event) {
     $event.target.className == 'assembly-button button'
       ? ($event.target.className = 'assembly-button highlighted-button button')
@@ -173,69 +180,96 @@ class App extends Component {
 
     this.sandwichItems.forEach((element, index) => {
       if ($event.target.id == element.id) {
-        if (!this.state.selectedSalads.includes(this.sandwichItems[index])){
+        if (!this.state.selectedSalads.includes(this.sandwichItems[index])) {
           this.setState({
             selectedSalads: [
               ...this.state.selectedSalads,
               this.sandwichItems[index]
-            ],
-            saladPriceList: [
-              ...this.state.saladPriceList,
-              {
-                price: this.sandwichItems[index].price,
-                id: this.sandwichItems[index].id
-              }
             ]
           })
         } else {
           this.setState({
             selectedSalads: this.state.selectedSalads.filter(
               element => element != this.sandwichItems[index]
-            ),
-            saladPriceList: this.state.saladPriceList.filter(
-              element => element.id != this.sandwichItems[index].id
             )
           })
         }
-        this.setState({
-          totalSaladPrice: this.state.saladPriceList.reduce(
-            (prevValue, currValue) => prevValue.price + currValue, 0
-          )
-        })
+      }
+    })
+  }
 
-        this.setState({
-          totalPrice:
-            this.state.selectedBread[0].price +
-            this.state.selectedMeat[0].price +
-            this.state.selectedCheese[0].price +
-            this.state.totalSaladPrice
-        })
-        console.log(this.state.totalSaladPrice)
+  selectedComplement($event) {
+    $event.target.className == 'assembly-button button'
+      ? ($event.target.className = 'assembly-button highlighted-button button')
+      : ($event.target.className = 'assembly-button button')
+
+    this.sandwichItems.forEach((element, index) => {
+      if ($event.target.id == element.id) {
+        if (!this.state.selectedComplements.includes(this.sandwichItems[index])) {
+          this.setState({
+            selectedComplements: [
+              ...this.state.selectedComplements,
+              this.sandwichItems[index]
+            ]
+          })
+        } else {
+          this.setState({
+            selectedComplements: this.state.selectedComplements.filter(
+              element => element != this.sandwichItems[index]
+            )
+          })
+        }
       }
     })
   }
 
   next() {
-    if (
-      this.state.sandwichStep == 'stepBread' &&
-      this.state.singleItemsList.length == 1
-    ) {
-      this.setState({ sandwichStep: 'stepMeat' })
-    } else if (
-      this.state.sandwichStep == 'stepMeat' &&
-      this.state.singleItemsList.length == 2
-    ) {
-      this.setState({ sandwichStep: 'stepCheese' })
-    } else if (
-      this.state.sandwichStep == 'stepCheese' &&
-      this.state.singleItemsList.length == 3
-    ) {
+    if (this.state.sandwichStep == 'stepBread') {
+      this.setState({ sandwichStep: 'stepMeat', disabled: true })
+    } else if (this.state.sandwichStep == 'stepMeat') {
+      this.setState({ sandwichStep: 'stepCheese', disabled: true })
+    } else if (this.state.sandwichStep == 'stepCheese') {
       this.setState({ sandwichStep: 'stepSalad' })
-    } else if (
-      this.state.sandwichStep == 'stepSalad' &&
-      this.state.selectedSalads.length > 0
-    ) {
+    } else if (this.state.sandwichStep == 'stepSalad') {
       this.setState({ sandwichStep: 'stepComplement' })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.sandwichStep == 'stepSalad') {
+      if (prevState.selectedSalads != this.state.selectedSalads) {
+        this.setState({
+          totalPrice:
+            this.state.selectedBread[0].price +
+            this.state.selectedMeat[0].price +
+            this.state.selectedCheese[0].price +
+            this.state.selectedSalads.reduce(
+              (previousValue, currentValue) =>
+                previousValue + currentValue.price,
+              0
+            )
+        })
+      }
+    }
+    if (this.state.sandwichStep == 'stepComplement') {
+      if (prevState.selectedComplements != this.state.selectedComplements) {
+        this.setState({
+          totalPrice:
+            this.state.selectedBread[0].price +
+            this.state.selectedMeat[0].price +
+            this.state.selectedCheese[0].price +
+            this.state.selectedSalads.reduce(
+              (previousValue, currentValue) =>
+                previousValue + currentValue.price,
+              0
+            ) +
+            this.state.selectedComplements.reduce(
+              (previousValue, currentValue) =>
+                previousValue + currentValue.price,
+              0
+            )
+        })
+      }
     }
   }
 
@@ -253,6 +287,7 @@ class App extends Component {
                   total={this.state.totalPrice}
                   singleItems={this.state.singleItemsList}
                   saladItems={this.state.selectedSalads}
+                  complementItems={this.state.selectedComplements}
                   selectedBread={this.selectedBread}
                   bread1={this.breadButtons[0].class}
                   bread2={this.breadButtons[1].class}
@@ -269,6 +304,8 @@ class App extends Component {
                   cheese3={this.cheeseButtons[2].class}
                   cheese4={this.cheeseButtons[3].class}
                   selectedSalad={this.selectedSalad}
+                  selectedComplement={this.selectedComplement}
+                  disabled={this.state.disabled}
                 />
               }
             />

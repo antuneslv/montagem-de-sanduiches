@@ -10,3 +10,7 @@
   left: 80px;
   bottom: 38px;
 }
+
+.cta-button:disabled {
+  cursor:default;
+}

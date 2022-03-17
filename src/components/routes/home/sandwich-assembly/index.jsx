@@ -47,15 +47,11 @@ class SandwichAssembly extends Component {
         break
 
       case 'stepSalad':
-        step = (
-          <Salad
-            selectedSalad={this.props.selectedSalad}
-          />
-        )
+        step = <Salad selectedSalad={this.props.selectedSalad} />
         break
 
       case 'stepComplement':
-        step = <Complement />
+        step = <Complement selectedComplement={this.props.selectedComplement} />
         break
     }
     return <div className="assembly-wrapper">{step}</div>

@@ -19,15 +19,14 @@ class Preview extends Component {
       )
     } else {
       step = (
-        <Button className="cta-button" onClick={this.props.next}>
+        <Button className="cta-button" disabled={this.props.disabled} onClick={this.props.next}>
           Prosseguir
         </Button>
       )
     }
 
-    const { singleItems, saladItems } = this.props
-    const salad = <p>Saladas: </p>
-
+    const { singleItems, saladItems, complementItems } = this.props
+    
     return (
       <div className="preview-wrapper">
         <h2 className="preview-title">Ingredientes Selecionados:</h2>
@@ -39,6 +38,12 @@ class Preview extends Component {
           ))}
           {saladItems.length > 0 && <p>Saladas: </p>}
           {saladItems.map(item => (
+            <li className="preview-items" key={item.id}>
+              {item.item}
+            </li>
+          ))}
+          {complementItems.length > 0 && <p>Complementos: </p>}
+          {complementItems.map(item => (
             <li className="preview-items" key={item.id}>
               {item.item}
             </li>
