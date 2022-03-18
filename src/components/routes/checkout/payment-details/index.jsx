@@ -14,6 +14,11 @@ class PaymentDetails extends Component {
   constructor() {
     super()
     this.state = {
+      name: '',
+      cardNumber: '',
+      expirationDate: '',
+      cvv: '',
+      cpf: '',
       validations: {
         name: {
           isDirty: false,
@@ -39,11 +44,91 @@ class PaymentDetails extends Component {
     }
 
     this.dirtyComponent = this.dirtyComponent.bind(this)
+    this.changeName = this.changeName.bind(this)
+    this.changeCardNumber = this.changeCardNumber.bind(this)
+    this.changeExpirationDate = this.changeExpirationDate.bind(this)
+    this.changeCvv = this.changeCvv.bind(this)
+    this.changeCpf = this.changeCpf.bind(this)
   }
 
-  dirtyComponent($event){
-    const {validations} = this.state
-    const {id, value} = $event.target
+  changeName($event) {
+    const errors = nameValidator($event.target.value)
+
+    this.setState({
+      name: $event.target.value,
+      validations: {
+        ...this.state.validations,
+        name: {
+          ...this.state.validations.name,
+          errors
+        }
+      }
+    })
+  }
+
+  changeCardNumber($event) {
+    const errors = cardNumberValidator($event.target.value)
+
+    this.setState({
+      cardNumber: $event.target.value,
+      validations: {
+        ...this.state.validations,
+        cardNumber: {
+          ...this.state.validations.cardNumber,
+          errors
+        }
+      }
+    })
+  }
+
+  changeExpirationDate($event) {
+    const errors = expirationDateValidator($event.target.value)
+
+    this.setState({
+      expirationDate: $event.target.value,
+      validations: {
+        ...this.state.validations,
+        expirationDate: {
+          ...this.state.validations.expirationDate,
+          errors
+        }
+      }
+    })
+  }
+
+  changeCvv($event) {
+    const errors = cvvValidator($event.target.value)
+
+    this.setState({
+      cvv: $event.target.value,
+      validations: {
+        ...this.state.validations,
+        cvv: {
+          ...this.state.validations.cvv,
+          errors
+        }
+      }
+    })
+  }
+
+  changeCpf($event) {
+    const errors = cpfValidator($event.target.value)
+
+    this.setState({
+      cpf: $event.target.value,
+      validations: {
+        ...this.state.validations,
+        cpf: {
+          ...this.state.validations.cpf,
+          errors
+        }
+      }
+    })
+  }
+
+  dirtyComponent($event) {
+    const { validations } = this.state
+    const { id, value } = $event.target
     let errors
 
     switch (id) {
@@ -77,8 +162,16 @@ class PaymentDetails extends Component {
     this.setState({ validations })
   }
 
+  componentDidUpdate() {
+    // console.log(this.state.name)
+    // console.log(this.state.cardNumber)
+    // console.log(this.state.expirationDate)
+    // console.log(this.state.cvv)
+    // console.log(this.state.cpf)
+  }
+
   render() {
-     const { validations } = this.state
+    const { validations } = this.state
 
     return (
       <div className="payment-datails-wrapper">
@@ -91,6 +184,7 @@ class PaymentDetails extends Component {
               name="name"
               id="name"
               placeholder="Seu Nome Completo"
+              onChange={this.changeName}
               onBlur={this.dirtyComponent}
             />
           </label>
@@ -107,6 +201,7 @@ class PaymentDetails extends Component {
               name="cardNumber"
               id="cardNumber"
               placeholder="Somente números"
+              onChange={this.changeCardNumber}
               onBlur={this.dirtyComponent}
             />
           </label>
@@ -125,6 +220,7 @@ class PaymentDetails extends Component {
                 id="expirationDate"
                 placeholder="Somente números"
                 className="expiration-date-input"
+                onChange={this.changeExpirationDate}
                 onBlur={this.dirtyComponent}
               />
             </label>
@@ -136,6 +232,7 @@ class PaymentDetails extends Component {
                 id="cvv"
                 placeholder="3 dígitos"
                 className="cvv-input"
+                onChange={this.changeCvv}
                 onBlur={this.dirtyComponent}
               />
             </label>
@@ -159,6 +256,7 @@ class PaymentDetails extends Component {
               name="cpf"
               id="cpf"
               placeholder="Somente números"
+              onChange={this.changeCpf}
               onBlur={this.dirtyComponent}
             />
           </label>
