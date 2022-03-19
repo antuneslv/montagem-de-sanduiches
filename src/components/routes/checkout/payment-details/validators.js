@@ -3,9 +3,7 @@ export const nameValidator = (value) => {
 
   if(!value){
     errors.push('Insira um nome!')
-  }
-
-  if (/[^A-Za-z ãáéóô]/.test(value)) {
+  } else if (/[^A-Za-z ãáéóô]/.test(value)) {
     errors.push('Nome inválido.')
   }
 
@@ -28,12 +26,12 @@ export const cardNumberValidator = value => {
 
 export const expirationDateValidator = value => {
   const errors = []
-  let date = new Date()
-  let day = String(date.getDate()).padStart(2, '0')
-  let month = String(date.getMonth() + 1).padStart(2, '0')
-  let year = String(date.getFullYear())
-  let dateNow = day + month + year
-  console.log(dateNow)
+  let dateNow = new Date()
+  let dayValue = value.substr(0, 2)
+  let monthValue = value.substr(2, 2)
+  let yearValue = value.substr(4, 4)
+  let dateValue = `${monthValue}/${dayValue}/${yearValue}`
+  let newDateValue = new Date(dateValue)
 
   if (!value) {
     errors.push('Insira a data de validade!')
@@ -41,7 +39,7 @@ export const expirationDateValidator = value => {
     errors.push('Somente números.')
   } else if (!/^(0[1-9]|1\d|2\d|3[01])(0[1-9]|1[0-2])([\d]{4})$/.test(value)) {
     errors.push('Data Inválida. Digite ddmmaaaa')
-  } else if (Number(value) > Number(dateNow)) {
+  } else if (newDateValue < dateNow) {
     errors.push('A data de validade é anterior a data atual.')
   }
 

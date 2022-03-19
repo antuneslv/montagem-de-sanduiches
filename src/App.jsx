@@ -234,7 +234,7 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProp, prevState) {
     if (this.state.sandwichStep == 'stepSalad') {
       if (prevState.selectedSalads != this.state.selectedSalads) {
         this.setState({

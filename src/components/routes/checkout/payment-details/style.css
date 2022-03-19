@@ -38,3 +38,7 @@
   margin: 5px;
   color: #ce0000
 }
+
+.invalid-input {
+  border: 1px solid #ce0000;
+}

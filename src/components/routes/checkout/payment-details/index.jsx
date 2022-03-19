@@ -21,22 +21,27 @@ class PaymentDetails extends Component {
       cpf: '',
       validations: {
         name: {
+          status: 'neutral',
           isDirty: false,
           errors: []
         },
         cardNumber: {
+          status: 'neutral',
           isDirty: false,
           errors: []
         },
         expirationDate: {
+          status: 'neutral',
           isDirty: false,
           errors: []
         },
         cvv: {
+          status: 'neutral',
           isDirty: false,
           errors: []
         },
         cpf: {
+          status: 'neutral',
           isDirty: false,
           errors: []
         }
@@ -162,12 +167,14 @@ class PaymentDetails extends Component {
     this.setState({ validations })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProp, prevState) {
     // console.log(this.state.name)
     // console.log(this.state.cardNumber)
     // console.log(this.state.expirationDate)
     // console.log(this.state.cvv)
     // console.log(this.state.cpf)
+    console.log(this.state.validations.name.status)
+    console.log(this.state.validations.name.errors)
   }
 
   render() {
