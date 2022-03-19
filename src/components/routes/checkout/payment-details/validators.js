@@ -3,7 +3,7 @@ export const nameValidator = (value) => {
 
   if(!value){
     errors.push('Insira um nome!')
-  } else if (/[^A-Za-z ãáéóô]/.test(value)) {
+  } else if (/[^A-Za-z ãáâéêíõóôúüçñ]/.test(value)) {
     errors.push('Nome inválido.')
   }
 

@@ -40,5 +40,19 @@
 }
 
 .invalid-input {
-  border: 1px solid #ce0000;
+  border-color: #dc3545;
+}
+
+.invalid-input:focus {
+  border: 2px solid #dc3545;
+  outline: #dc3545;
+}
+
+.valid-input {
+  border-color: #198754;
+}
+
+.valid-input:focus {
+  border: 2px solid #198754;
+  outline: #198754;
 }
