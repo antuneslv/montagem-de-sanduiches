@@ -1,11 +1,26 @@
+.modal-wrapper {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .modal {
   width: 876px;
   height: 527px;
   border-radius: 8px;
+  background-color: #FFFFFF;
+  position: relative;
 }
 
 .modal-title {
   font-family: 'Lobster', cursive;
+  margin: 40px;
   font-size: 32px;
   color: #8E0000;
   text-align: center;
@@ -13,10 +28,15 @@
 
 .modal-text {
   font-size: 24px;
-  text-align: center;
+  text-align: start;
+  margin: 0 40px;
+  line-height: 33.6px;
 }
 
 .modal-button {
   width: 240px;
   background-color: #C62828;
+  position: absolute;
+  left: 318px;
+  bottom: 40px;
 }
