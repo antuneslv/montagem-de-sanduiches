@@ -14,7 +14,7 @@ Clone este projeto e use o comando "npm install" para instalar as dependências.
 
 Selecione o tipo de pão, carne, queijo, salada e complementos. O passo a passo da montagem vai ser exibido na tela e vai ser atualizado o preço a cada item adicionado.
 
-Depois de montar seu sanduíche você vai ser direcionado para uma tela de cadastrodo de dados de pagamento, se todos os campos forem válidos o botão "pagar" é habilitado e abrirá um modal com uma mensagem finalizando o pedido.
+Depois de montar seu sanduíche você vai ser direcionado para uma tela de cadastro de dados de pagamento, se todos os campos forem válidos o botão "pagar" é habilitado e abrirá um modal com uma mensagem finalizando o pedido.
 
 ## Regras de desenvolvimento
 
