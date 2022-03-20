@@ -14,3 +14,7 @@
 .highlighted-button {
   background-color: #C79100;
 }
+
+.highlighted-button:hover {
+  background-color: #e79100;
+}

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class Button extends Component {
@@ -10,6 +11,10 @@ class Button extends Component {
       ></button>
     )
   }
+}
+
+Button.propTypes = {
+  className: PropTypes.string
 }
 
 export default Button

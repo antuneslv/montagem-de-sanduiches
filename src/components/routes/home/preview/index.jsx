@@ -1,15 +1,24 @@
 import { Component } from 'react'
 import Button from '../../../button'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class Preview extends Component {
   render() {
-    const { total, singleItems, saladItems, complementItems } = this.props
+    const {
+      total,
+      singleItems,
+      saladItems,
+      complementItems,
+      sandwichStep,
+      disabled,
+      next
+    } = this.props
     let formatedCurrency = total.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
     let step
 
-    if (this.props.sandwichStep == 'stepComplement') {
+    if (sandwichStep == 'stepComplement') {
       step = (
         <Button className="cta-button">
           <Link className="link" to="/pagamento">
@@ -19,7 +28,7 @@ class Preview extends Component {
       )
     } else {
       step = (
-        <Button className="cta-button" disabled={this.props.disabled} onClick={this.props.next}>
+        <Button className="cta-button" disabled={disabled} onClick={next}>
           Prosseguir
         </Button>
       )
@@ -52,6 +61,16 @@ class Preview extends Component {
       </div>
     )
   }
+}
+
+Preview.propTypes = {
+  total: PropTypes.number,
+  singleItems: PropTypes.array,
+  saladItems: PropTypes.array,
+  complementItems: PropTypes.array,
+  sandwichStep: PropTypes.string,
+  disabled: PropTypes.bool,
+  next: PropTypes.func
 }
 
 export default Preview

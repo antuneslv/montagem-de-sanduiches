@@ -12,6 +12,7 @@ import {
   cvvValidator,
   cpfValidator
 } from './validators'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class Checkout extends Component {
@@ -175,7 +176,14 @@ class Checkout extends Component {
 
   render() {
     const { singleItems, saladItems, complementItems, total } = this.props
-    const { validations } = this.state
+    const {
+      validations,
+      isButtonDisabled,
+      isModalOpen,
+      modalTitle,
+      modalText,
+      modalButtonText
+    } = this.state
 
     return (
       <>
@@ -210,21 +218,28 @@ class Checkout extends Component {
             cpfClass={validations.cpf.class}
             validationsCpfIsDirty={validations.cpf.isDirty}
             validationsCpfErrors={validations.cpf.errors}
-            disabled={this.state.isButtonDisabled}
+            disabled={isButtonDisabled}
             openModal={this.openModal}
           />
         </Main>
-        {this.state.isModalOpen && (
+        {isModalOpen && (
           <Modal
-            modalTitle={this.state.modalTitle}
-            modalText={this.state.modalText}
-            buttonText={this.state.modalButtonText}
+            modalTitle={modalTitle}
+            modalText={modalText}
+            buttonText={modalButtonText}
             closeModal={this.closeModal}
           />
         )}
       </>
     )
   }
+}
+
+Checkout.propTypes = {
+  singleItems: PropTypes.array,
+  saladItems: PropTypes.array,
+  complementItems: PropTypes.array,
+  total: PropTypes.number
 }
 
 export default Checkout

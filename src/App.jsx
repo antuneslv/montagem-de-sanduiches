@@ -16,7 +16,7 @@ class App extends Component {
       selectedComplements: [],
       singleItemsList: [],
       totalPrice: 0,
-      disabled: true
+      isButtonDisabled: true
     }
 
     this.sandwichItems = [
@@ -87,7 +87,7 @@ class App extends Component {
   }
 
   selectedBread($event) {
-    this.setState({ disabled: false })
+    this.setState({ isButtonDisabled: false })
 
     this.breadButtons.forEach(button => {
       if (button.id != $event.target.id) {
@@ -113,7 +113,7 @@ class App extends Component {
   }
 
   selectedMeat($event) {
-    this.setState({ disabled: false })
+    this.setState({ isButtonDisabled: false })
 
     this.meatButtons.forEach(button => {
       if (button.id != $event.target.id) {
@@ -141,7 +141,7 @@ class App extends Component {
   }
 
   selectedCheese($event) {
-    this.setState({ disabled: false })
+    this.setState({ isButtonDisabled: false })
 
     this.cheeseButtons.forEach(button => {
       if (button.id != $event.target.id) {
@@ -224,9 +224,9 @@ class App extends Component {
 
   next() {
     if (this.state.sandwichStep == 'stepBread') {
-      this.setState({ sandwichStep: 'stepMeat', disabled: true })
+      this.setState({ sandwichStep: 'stepMeat', isButtonDisabled: true })
     } else if (this.state.sandwichStep == 'stepMeat') {
-      this.setState({ sandwichStep: 'stepCheese', disabled: true })
+      this.setState({ sandwichStep: 'stepCheese', isButtonDisabled: true })
     } else if (this.state.sandwichStep == 'stepCheese') {
       this.setState({ sandwichStep: 'stepSalad' })
     } else if (this.state.sandwichStep == 'stepSalad') {
@@ -273,6 +273,15 @@ class App extends Component {
   }
 
   render() {
+    const {
+      sandwichStep,
+      totalPrice,
+      singleItemsList,
+      selectedSalads,
+      selectedComplements,
+      isButtonDisabled
+    } = this.state
+
     return (
       <div className="wrapper">
         <BrowserRouter>
@@ -281,12 +290,12 @@ class App extends Component {
               path="/"
               element={
                 <Home
-                  sandwichStep={this.state.sandwichStep}
+                  sandwichStep={sandwichStep}
                   next={this.next}
-                  total={this.state.totalPrice}
-                  singleItems={this.state.singleItemsList}
-                  saladItems={this.state.selectedSalads}
-                  complementItems={this.state.selectedComplements}
+                  total={totalPrice}
+                  singleItems={singleItemsList}
+                  saladItems={selectedSalads}
+                  complementItems={selectedComplements}
                   selectedBread={this.selectedBread}
                   bread1={this.breadButtons[0].class}
                   bread2={this.breadButtons[1].class}
@@ -304,7 +313,7 @@ class App extends Component {
                   cheese4={this.cheeseButtons[3].class}
                   selectedSalad={this.selectedSalad}
                   selectedComplement={this.selectedComplement}
-                  disabled={this.state.disabled}
+                  disabled={isButtonDisabled}
                 />
               }
             />
@@ -312,10 +321,10 @@ class App extends Component {
               path="/pagamento"
               element={
                 <Checkout
-                  singleItems={this.state.singleItemsList}
-                  saladItems={this.state.selectedSalads}
-                  complementItems={this.state.selectedComplements}
-                  total={this.state.totalPrice}
+                  singleItems={singleItemsList}
+                  saladItems={selectedSalads}
+                  complementItems={selectedComplements}
+                  total={totalPrice}
                 />
               }
             />

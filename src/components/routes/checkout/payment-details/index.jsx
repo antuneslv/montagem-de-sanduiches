@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Button from '../../../button'
 import Input from './input'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class PaymentDetails extends Component {
@@ -133,6 +134,27 @@ class PaymentDetails extends Component {
       </div>
     )
   }
+}
+
+PaymentDetails.propTypes = {
+  changeFormValue: PropTypes.func,
+  dirtyComponent: PropTypes.func,
+  nameClass: PropTypes.string,
+  validationsNameIsDirty: PropTypes.bool,
+  validationsNameErrors: PropTypes.array,
+  cardNumberClass: PropTypes.string,
+  validationsCardNumberIsDirty: PropTypes.bool,
+  validationsCardNumberErrors: PropTypes.array,
+  expirationDateClass: PropTypes.string,
+  validationsExpirationDateIsDirty: PropTypes.bool,
+  validationsExpirationDateErrors: PropTypes.array,
+  cvvClass: PropTypes.string,
+  validationsCvvIsDirty: PropTypes.bool,
+  validationsCvvErrors: PropTypes.array,
+  cpfClass: PropTypes.string,
+  validationsCpfIsDirty: PropTypes.bool,
+  validationsCpfErrors: PropTypes.array,
+  disabled: PropTypes.bool
 }
 
 export default PaymentDetails

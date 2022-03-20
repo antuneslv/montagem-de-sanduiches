@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class OrderSummary extends Component {
@@ -57,6 +58,13 @@ class OrderSummary extends Component {
         </>
       )
   }
+}
+
+OrderSummary.propTypes = {
+  singleItems: PropTypes.array,
+  saladItems: PropTypes.array,
+  complementItems: PropTypes.array,
+  total: PropTypes.number
 }
 
 export default OrderSummary

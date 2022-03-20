@@ -40,3 +40,7 @@
   left: 318px;
   bottom: 40px;
 }
+
+.modal-button:hover {
+  background-color: #d62828;
+}

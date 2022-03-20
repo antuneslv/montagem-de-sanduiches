@@ -3,6 +3,8 @@ import Button from '../../../../button'
 
 class Salad extends Component {
   render() {
+    const { selectedSalad } = this.props
+    
     return (
       <>
         <div>
@@ -12,28 +14,28 @@ class Salad extends Component {
         <Button
           id="salad1"
           className="assembly-button"
-          onClick={this.props.selectedSalad}
+          onClick={selectedSalad}
         >
           Alface
         </Button>
         <Button
           id="salad2"
           className="assembly-button"
-          onClick={this.props.selectedSalad}
+          onClick={selectedSalad}
         >
           Tomate
         </Button>
         <Button
           id="salad3"
           className="assembly-button"
-          onClick={this.props.selectedSalad}
+          onClick={selectedSalad}
         >
           Cebola
         </Button>
         <Button
           id="salad4"
           className="assembly-button"
-          onClick={this.props.selectedSalad}
+          onClick={selectedSalad}
         >
           Picles
         </Button>

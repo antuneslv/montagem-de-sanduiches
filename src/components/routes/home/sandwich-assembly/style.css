@@ -20,3 +20,7 @@
   background-color: #C62828;
   width: 680px;
 }
+
+.assembly-button:hover {
+  background-color: #e12424;
+}

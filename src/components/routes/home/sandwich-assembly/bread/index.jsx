@@ -3,6 +3,8 @@ import Button from '../../../../button'
 
 class Bread extends Component {
   render() {
+    const { selectedBread, bread1, bread2, bread3, bread4 } = this.props
+
     return (
       <>
         <div className="assembly-group-title">
@@ -10,29 +12,29 @@ class Bread extends Component {
         </div>
         <Button
           id="bread1"
-          className={this.props.bread1}
-          onClick={this.props.selectedBread}
+          className={bread1}
+          onClick={selectedBread}
         >
           Brioche
         </Button>
         <Button
           id="bread2"
-          className={this.props.bread2}
-          onClick={this.props.selectedBread}
+          className={bread2}
+          onClick={selectedBread}
         >
           Australiano
         </Button>
         <Button
           id="bread3"
-          className={this.props.bread3}
-          onClick={this.props.selectedBread}
+          className={bread3}
+          onClick={selectedBread}
         >
           Gergelim
         </Button>
         <Button
           id="bread4"
-          className={this.props.bread4}
-          onClick={this.props.selectedBread}
+          className={bread4}
+          onClick={selectedBread}
         >
           Sal
         </Button>

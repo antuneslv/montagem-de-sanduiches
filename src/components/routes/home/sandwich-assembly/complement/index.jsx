@@ -3,6 +3,8 @@ import Button from '../../../../button'
 
 class Complement extends Component {
   render() {
+    const { selectedComplement } = this.props
+
     return (
       <>
         <div>
@@ -12,28 +14,28 @@ class Complement extends Component {
         <Button
           id="complement1"
           className="assembly-button"
-          onClick={this.props.selectedComplement}
+          onClick={selectedComplement}
         >
           Bacon
         </Button>
         <Button
           id="complement2"
           className="assembly-button"
-          onClick={this.props.selectedComplement}
+          onClick={selectedComplement}
         >
           Cebola Caramelizada
         </Button>
         <Button
           id="complement3"
           className="assembly-button"
-          onClick={this.props.selectedComplement}
+          onClick={selectedComplement}
         >
           Molho Especial
         </Button>
         <Button
           id="complement4"
           className="assembly-button"
-          onClick={this.props.selectedComplement}
+          onClick={selectedComplement}
         >
           Pimenta Jalapeño
         </Button>

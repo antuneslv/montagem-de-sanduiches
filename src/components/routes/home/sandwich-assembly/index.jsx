@@ -4,20 +4,42 @@ import Meat from './meat'
 import Cheese from './cheese'
 import Salad from './salad'
 import Complement from './complement'
+import PropTypes from 'prop-types'
 import './style.css'
 
 class SandwichAssembly extends Component {
   render() {
+    const {
+      sandwichStep,
+      selectedBread,
+      bread1,
+      bread2,
+      bread3,
+      bread4,
+      selectedMeat,
+      meat1,
+      meat2,
+      meat3,
+      meat4,
+      selectedCheese,
+      cheese1,
+      cheese2,
+      cheese3,
+      cheese4,
+      selectedSalad,
+      selectedComplement
+    } = this.props
     let step
-    switch (this.props.sandwichStep) {
+
+    switch (sandwichStep) {
       case 'stepBread':
         step = (
           <Bread
-            selectedBread={this.props.selectedBread}
-            bread1={this.props.bread1}
-            bread2={this.props.bread2}
-            bread3={this.props.bread3}
-            bread4={this.props.bread4}
+            selectedBread={selectedBread}
+            bread1={bread1}
+            bread2={bread2}
+            bread3={bread3}
+            bread4={bread4}
           />
         )
         break
@@ -25,11 +47,11 @@ class SandwichAssembly extends Component {
       case 'stepMeat':
         step = (
           <Meat
-            selectedMeat={this.props.selectedMeat}
-            meat1={this.props.meat1}
-            meat2={this.props.meat2}
-            meat3={this.props.meat3}
-            meat4={this.props.meat4}
+            selectedMeat={selectedMeat}
+            meat1={meat1}
+            meat2={meat2}
+            meat3={meat3}
+            meat4={meat4}
           />
         )
         break
@@ -37,25 +59,58 @@ class SandwichAssembly extends Component {
       case 'stepCheese':
         step = (
           <Cheese
-            selectedCheese={this.props.selectedCheese}
-            cheese1={this.props.cheese1}
-            cheese2={this.props.cheese2}
-            cheese3={this.props.cheese3}
-            cheese4={this.props.cheese4}
+            selectedCheese={selectedCheese}
+            cheese1={cheese1}
+            cheese2={cheese2}
+            cheese3={cheese3}
+            cheese4={cheese4}
           />
         )
         break
 
       case 'stepSalad':
-        step = <Salad selectedSalad={this.props.selectedSalad} />
+        step = <Salad selectedSalad={selectedSalad} />
         break
 
       case 'stepComplement':
-        step = <Complement selectedComplement={this.props.selectedComplement} />
+        step = <Complement selectedComplement={selectedComplement} />
+        break
+
+      default:
+        step = (
+          <Bread
+            selectedBread={selectedBread}
+            bread1={bread1}
+            bread2={bread2}
+            bread3={bread3}
+            bread4={bread4}
+          />
+        )
         break
     }
     return <div className="assembly-wrapper">{step}</div>
   }
+}
+
+SandwichAssembly.propTypes = {
+  sandwichStep: PropTypes.string,
+  selectedBread: PropTypes.func,
+  bread1: PropTypes.string,
+  bread2: PropTypes.string,
+  bread3: PropTypes.string,
+  bread4: PropTypes.string,
+  selectedMeat: PropTypes.func,
+  meat1: PropTypes.string,
+  meat2: PropTypes.string,
+  meat3: PropTypes.string,
+  meat4: PropTypes.string,
+  selectedCheese: PropTypes.func,
+  cheese1: PropTypes.string,
+  cheese2: PropTypes.string,
+  cheese3: PropTypes.string,
+  cheese4: PropTypes.string,
+  selectedSalad: PropTypes.func,
+  selectedComplement: PropTypes.func
 }
 
 export default SandwichAssembly
