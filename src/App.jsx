@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Home from './components/routes/home'
 import Checkout from './components/routes/checkout'
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import './styles/App.css'
 
 class App extends Component {
@@ -284,7 +284,7 @@ class App extends Component {
 
     return (
       <div className="wrapper">
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route
               path="/"
@@ -329,7 +329,7 @@ class App extends Component {
               }
             />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </div>
     )
   }
