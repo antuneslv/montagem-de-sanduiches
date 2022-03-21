@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Button from '../../../../button'
+import PropTypes from 'prop-types'
 
 class Salad extends Component {
   render() {
@@ -42,6 +43,10 @@ class Salad extends Component {
       </>
     )
   }
+}
+
+Salad.propTypes = {
+  selectedSalad: PropTypes.func
 }
 
 export default Salad

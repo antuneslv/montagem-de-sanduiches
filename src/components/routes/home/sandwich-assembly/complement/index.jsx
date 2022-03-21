@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Button from '../../../../button'
+import PropTypes from 'prop-types'
 
 class Complement extends Component {
   render() {
@@ -42,6 +43,10 @@ class Complement extends Component {
       </>
     )
   }
+}
+
+Complement.propTypes = {
+  selectedComplement: PropTypes.func
 }
 
 export default Complement

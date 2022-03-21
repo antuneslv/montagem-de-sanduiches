@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Button from '../../../../button'
+import PropTypes from 'prop-types'
 
 class Meat extends Component {
   render() {
@@ -41,6 +42,14 @@ class Meat extends Component {
       </>
     )
   }
+}
+
+Meat.propTypes = {
+  selectedMeat: PropTypes.func,
+  meat1: PropTypes.string,
+  meat2: PropTypes.string,
+  meat3: PropTypes.string,
+  meat4: PropTypes.string
 }
 
 export default Meat

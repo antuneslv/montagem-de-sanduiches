@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Button from '../../../../button'
+import PropTypes from 'prop-types'
 
 class Bread extends Component {
   render() {
@@ -41,6 +42,14 @@ class Bread extends Component {
       </>
     )
   }
+}
+
+Bread.propTypes = {
+  selectedBread: PropTypes.func,
+  bread1: PropTypes.string,
+  bread2: PropTypes.string,
+  bread3: PropTypes.string,
+  bread4: PropTypes.string
 }
 
 export default Bread

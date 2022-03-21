@@ -37,24 +37,9 @@ class App extends Component {
       { type: 'Saladas', item: 'Cebola', price: 2, id: 'salad3' },
       { type: 'Saladas', item: 'Picles', price: 4, id: 'salad4' },
       { type: 'Complementos', item: 'Bacon', price: 4, id: 'complement1' },
-      {
-        type: 'Complementos',
-        item: 'Cebola Caramelizada',
-        price: 2,
-        id: 'complement2'
-      },
-      {
-        type: 'Complementos',
-        item: 'Molho Especial',
-        price: 3,
-        id: 'complement3'
-      },
-      {
-        type: 'Complementos',
-        item: 'Pimenta Jalapeño',
-        price: 3,
-        id: 'complement4'
-      }
+      { type: 'Complementos', item: 'Cebola Caramelizada', price: 2, id: 'complement2' },
+      { type: 'Complementos', item: 'Molho Especial', price: 3, id: 'complement3' },
+      { type: 'Complementos', item: 'Pimenta Jalapeño', price: 3, id: 'complement4' }
     ]
 
     this.breadButtons = [
