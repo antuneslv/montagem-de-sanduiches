@@ -1,14 +1,13 @@
 # Desafio Montagem de Sanduíches
 
-## Leandro Vendemiatto Antunes - Projeto final do Módulo 6 do curso de Web Full Stack da Let's Code
+## Projeto final do Módulo 6 do curso de Web Full Stack da Let's Code
 
 Este projeto consiste em criar um site de montagem de sanduíches usando a biblioteca React.js.
 Mais detalhes das regras do projeto logo abaixo.
 
-## Instação
+## Link
 
-Clone este projeto e use o comando "npm install" para instalar as dependências.
-"npm start" para inicializar.
+[Montagem de Sanduíches](https://antuneslv.github.io/montagem-de-sanduiches/)
 
 ## Como utilizar
 
