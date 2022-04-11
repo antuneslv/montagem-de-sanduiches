@@ -1,6 +1,6 @@
 # Desafio Montagem de Sanduíches
 
-## Projeto final do Módulo React I do curso de Web Full Stack da Let's Code
+## Projeto final do Módulo React 1 do curso de Web Full Stack da Let's Code
 
 Este projeto consiste em criar um site de montagem de sanduíches usando a biblioteca React.js.
 Mais detalhes das regras do projeto logo abaixo.
